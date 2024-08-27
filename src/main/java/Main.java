@@ -1,5 +1,13 @@
+import entity.Movie;
+import entity.MovieType;
+import entity.MovieTypeId;
+import entity.Type;
 import service.MovieService;
+import service.MovieTypeService;
 import service.SeatService;
+import service.TypeService;
+
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -72,7 +80,9 @@ public class Main {
 ////        seatDAO.getAllSeats();
 //        seatDAO.getSeatById(301);
         MovieService movieService = new MovieService();
+        TypeService typeService = new TypeService();
         SeatService seatService = new SeatService();
+        MovieTypeService movieTypeService = new MovieTypeService();
 //        Movie movie = new Movie();
 //        movie.setMovieId("M001");
 //        movie.setActor("Actor Name");
@@ -88,8 +98,29 @@ public class Main {
 //        Movie retrievedMovie = movieService.getMovieById("M001");
 //        System.out.println("Retrieved Movie: " + retrievedMovie.getActor());
         // Update and Delete operations can be similarly done.
-        seatService.seats();
-        System.out.println(seatService.seats());
+//        seatService.seats();
+//        System.out.println(seatService.seats());
 //        seatService.delete(seatService.getSeatById(301));
+//
+        Movie movie = movieService.getMovieById("MV01");
+        Type type = typeService.getTypeById(2);
+
+        MovieTypeId movieTypeId = new MovieTypeId();
+        movieTypeId.setMovieId(movie.getMovieId());
+        movieTypeId.setTypeId(type.getTypeId());
+
+        MovieType movieType = new MovieType();
+        movieType.setMovieTypeId(movieTypeId);
+        movieType.setMovie(movie);
+        movieType.setType(type);
+        movieType.setMtDescription("Crazy Movie");
+        movieTypeService.addMovieType(movieType);
+//
+//        MovieTypeId mvID = new MovieTypeId();
+//        mvID.setTypeId(1);
+//        mvID.setMovieId("MV01");
+
+//        System.out.println(movieTypeService.findMovieTypeById(mvID).getMtDescription());
+//        System.out.println(movieTypeService.findMovieTypeById(mo));
     }
 }

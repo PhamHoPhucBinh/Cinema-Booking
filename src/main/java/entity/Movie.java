@@ -1,5 +1,7 @@
 package entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -22,13 +24,17 @@ public class Movie {
     private Double duration;
 
     @Column(name = "FROM_DATE")
+    @Temporal(TemporalType.DATE)
     private Date fromDate;
 
     @Column(name = "TO_DATE")
+    @Temporal(TemporalType.DATE)
     private Date toDate;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<MovieType> movieTypes = new HashSet<>();
+
+
 
     public Movie() {
     }

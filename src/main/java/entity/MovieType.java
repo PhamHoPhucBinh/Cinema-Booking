@@ -5,15 +5,18 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "movie_type")
-public class MovieType implements Serializable {
-    @Id
+public class MovieType {
+    @EmbeddedId
+    private MovieTypeId movieTypeId;
+
     @ManyToOne
-    @JoinColumn(name = "TYPE_ID", nullable = false)
+    @MapsId("typeId")
+    @JoinColumn(name = "TYPE_ID", nullable = false, referencedColumnName = "type_id")
     private Type type;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "MOVIE_ID", nullable = false)
+    @MapsId("movieId")
+    @JoinColumn(name = "MOVIE_ID", nullable = false, referencedColumnName = "movie_id")
     private Movie movie;
 
     @Column(name = "MT_DESCRIPTION")
@@ -59,5 +62,13 @@ public class MovieType implements Serializable {
                 ", movie=" + movie +
                 ", mtDescription='" + mtDescription + '\'' +
                 '}';
+    }
+
+    public MovieTypeId getMovieTypeId() {
+        return movieTypeId;
+    }
+
+    public void setMovieTypeId(MovieTypeId movieTypeId) {
+        this.movieTypeId = movieTypeId;
     }
 }

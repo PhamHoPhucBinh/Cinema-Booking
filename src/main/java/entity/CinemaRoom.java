@@ -18,6 +18,7 @@ public class CinemaRoom {
     private int seatQuantity;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CINEMA_ROOM_ID",nullable = false,referencedColumnName = "CINEMA_ROOM_ID")
     private Set<Seat> seats;
 
     public CinemaRoom(int cinemaRoomId, String cinemaRoomName, int seatQuantity, Set<Seat> seats) {

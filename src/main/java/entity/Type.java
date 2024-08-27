@@ -1,5 +1,7 @@
 package entity;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +18,8 @@ public class Type {
     @Column(name = "type_description")
     private String typeDescription;
 
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
     private Set<MovieType> movieTypes = new HashSet<>();
 
     public Type(int typeId, String typeName, String typeDescription, Set<MovieType> movieTypes) {
@@ -67,7 +70,7 @@ public class Type {
                 "typeId=" + typeId +
                 ", typeName='" + typeName + '\'' +
                 ", typeDescription='" + typeDescription + '\'' +
-                ", movieTypes=" + movieTypes +
+                ", movieTypesSize=" + (movieTypes != null ? movieTypes.size() : 0) +
                 '}';
     }
 }

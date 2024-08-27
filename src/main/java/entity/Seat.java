@@ -1,7 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,7 +12,7 @@ public class Seat {
     private int seatId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CINEMA_ROOM_ID", nullable = false)
+//    @JoinColumn(name = "CINEMA_ROOM_ID", nullable = false, referencedColumnName = "cinema_room_id")
     private CinemaRoom cinemaRoom;
 
     @Column(name = "SEAT_COLUMN")

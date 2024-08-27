@@ -12,7 +12,7 @@ public class CinemaRoomDetail {
     private int cinemaRoomDetailId;
 
     @ManyToOne
-    @JoinColumn(name = "CINEMA_ROOM_ID", nullable = false)
+    @JoinColumn(name = "CINEMA_ROOM_ID", nullable = false, referencedColumnName = "cinema_room_id")
     private CinemaRoom cinemaRoom;
 
     @Column(name = "ROOM_RATE")
